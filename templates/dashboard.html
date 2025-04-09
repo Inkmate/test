@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" href="/static/img/user.ico" type="image/x-icon">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #264785, #2d7087); /* Admin-style gradient: deep blue tones */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        .dashboard {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .logout {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .logout:hover {
+            background: #c0392b;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+            .cert-list {
+            display: flex;
+            flex-direction: column; /* Forces items to stack */
+            align-items: center; /* Centers items */
+            gap: 10px; /* Adds spacing between buttons */
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .cert-list li {
+            width: 100%; /* Makes buttons full-width inside container */
+            max-width: 300px; /* Restricts button width */
+            text-align: center;
+        }
+
+        .cert-list li a {
+            display: block;
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .cert-list li a:hover {
+            background: #2980b9;
+        }
+
+        .cert-list li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <button class="logout" onclick="window.location.href='/logout'">Logout</button>
+    
+    <div class="dashboard">
+        <h2>Select a Certificate</h2>
+        <ul class="cert-list">
+            {% for cert in certificates %}
+                <li><a href="{{ url_for('dashboard.generate_certificate', filename=cert) }}">{{ cert }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
 
