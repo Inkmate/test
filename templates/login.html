@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="icon" href="/static/img/user.ico" type="image/x-icon"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #264785, #2d7087);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      background: #e0f0ed;
+      padding: 40px;
+      border-radius: 10px;
+      gap: 40px;
+    }
+
+    .left-panel, .right-panel {
+      padding: 20px;
+      border: 1px solid #333;
+      background-color: #d5f1ee;
+    }
+
+    .circle-logo {
+      width: 150px;
+      height: 150px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+      color: #f08080;
+    }
+
+    .form-box {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    input {
+      width: 200px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #999;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: 1px solid #999;
+      background-color: #f0f0f0;
+      color: #f08080;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .motto {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #e0e0e0;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="motto">"Efficient. Secure. Always at your service."</div>
+
+  <div class="container">
+    <!-- Left panel -->
+    <div class="left-panel">
+      <div class="circle-logo">Logo</div>
+      <button id="toggleButton" onclick="toggleForms()">Register</button>
+    </div>
+
+    <!-- Right panel -->
+    <div class="right-panel">
+      <!-- Login Form -->
+      <form id="loginForm" class="form-box" method="POST" action="/">
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signupForm" class="form-box hidden" method="POST" action="/signup">
+        <input type="text" name="username" placeholder="Choose username" required />
+        <input type="password" name="password" placeholder="Choose password" required />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let isLogin = true;
+
+    function toggleForms() {
+      isLogin = !isLogin;
+
+      document.getElementById("loginForm").classList.toggle("hidden", !isLogin);
+      document.getElementById("signupForm").classList.toggle("hidden", isLogin);
+      document.getElementById("toggleButton").innerText = isLogin ? "Register" : "Login";
+    }
+  </script>
+</body>
+</html>
