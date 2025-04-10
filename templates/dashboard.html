@@ -1,110 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="icon" href="/static/img/user.ico" type="image/x-icon">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="icon" href="/static/img/user.ico" type="image/x-icon"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #264785, #2d7087); /* Admin-style gradient: deep blue tones */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-            color: #fff;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #1d2ff4, #e61414);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      color: #ffffff;
+    }
 
-        .dashboard {
-            width: 90%;
-            max-width: 600px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      padding: 100px;
+      border-radius: 20px;
+      gap: 40px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
-        .logout {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
+    .left-panel, .right-panel {
+      padding: 90px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      -webkit-backdrop-filter: blur(15px);
+      backdrop-filter: blur(15px);
+      color: #fff;
+    }
 
-        .logout:hover {
-            background: #c0392b;
-        }
+    .circle-logo {
+      width: 150px;
+      height: 150px;
+      border: 2px solid #000000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+      color: #ffffff;
+      background-color: white;
+    }
 
-        h2 {
-            margin-bottom: 15px;
-            color: #333;
-        }
+    .form-box {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
 
-            .cert-list {
-            display: flex;
-            flex-direction: column; /* Forces items to stack */
-            align-items: center; /* Centers items */
-            gap: 10px; /* Adds spacing between buttons */
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
+    input {
+      font-size: 14px;
+      width: 300px;
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      -webkit-backdrop-filter: blur(15px);
+      backdrop-filter: blur(15px);
+      border: 1px solid #000000;
+    }
 
-        .cert-list li {
-            width: 100%; /* Makes buttons full-width inside container */
-            max-width: 300px; /* Restricts button width */
-            text-align: center;
-        }
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #1400cc; /* DepEd red accent */
+      color: #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-        .cert-list li a {
-            display: block;
-            background: #3498db;
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+    button:hover {
+      background-color: #990000;
+    }
 
-        .cert-list li a:hover {
-            background: #2980b9;
-        }
+    .hidden {
+      display: none;
+    }
 
-        .cert-list li a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            display: block;
-        }
-    </style>
+    .motto {
+      font-size: 28px;
+      margin-bottom: 40px;
+      color: #ffffff;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-    <button class="logout" onclick="window.location.href='/logout'">Logout</button>
-    
-    <div class="dashboard">
-        <h2>Select a Certificate</h2>
-        <ul class="cert-list">
-            {% for cert in certificates %}
-                <li><a href="{{ url_for('dashboard.generate_certificate', filename=cert) }}">{{ cert }}</a></li>
-            {% endfor %}
-        </ul>
+  <div class="motto">"Efficient. Secure. Always at your service."</div>
+
+  <div class="container">
+    <!-- Left panel -->
+    <div class="left-panel">
+      <div class="circle-logo">Logo</div>
+      <button id="toggleButton" onclick="toggleForms()">Register</button>
     </div>
+
+    <!-- Right panel -->
+    <div class="right-panel">
+      <!-- Login Form -->
+      <form id="loginForm" class="form-box" method="POST" action="/">
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signupForm" class="form-box hidden" method="POST" action="/signup">
+        <input type="text" name="username" placeholder="Choose username" required />
+        <input type="password" name="password" placeholder="Choose password" required />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let isLogin = true;
+
+    function toggleForms() {
+      isLogin = !isLogin;
+
+      document.getElementById("loginForm").classList.toggle("hidden", !isLogin);
+      document.getElementById("signupForm").classList.toggle("hidden", isLogin);
+      document.getElementById("toggleButton").innerText = isLogin ? "Register" : "Login";
+    }
+  </script>
 </body>
 </html>
-
