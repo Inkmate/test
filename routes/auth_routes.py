@@ -25,7 +25,7 @@ def login():
 
         if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
             session["user"] = username
-            return redirect(url_for("dashboard.html"))
+            return redirect(url_for("dashboard.dashboard"))
         return "Invalid credentials", 401
 
     # Renders your single-page login/register form
