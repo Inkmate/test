@@ -17,7 +17,7 @@ if os.path.exists(CSV_FILE):
                 username, password = row
                 USER_CREDENTIALS[username] = password
 
-@auth_bp.route("/login", methods=["GET", "POST"])
+@auth_bp.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form.get("username")
